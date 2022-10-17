@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.getbase.floatingactionbutton.FloatingActionButton
-import com.getbase.floatingactionbutton.FloatingActionsMenu
 import java.util.*
 
 
@@ -39,24 +38,24 @@ class MainActivity : AppCompatActivity(),ItemClickListener {
             val editDialog = Dialog(this@MainActivity)
             editDialog.setContentView(R.layout.alert_dialog)
 
-            val etName = editDialog.findViewById<EditText>(R.id.etName)
-            val etDesignation = editDialog.findViewById<EditText>(R.id.etPrice)
-            val etDepartment = editDialog.findViewById<EditText>(R.id.etFloor)
-            val etStation = editDialog.findViewById<EditText>(R.id.etComp)
+            val name = editDialog.findViewById<EditText>(R.id.etName)
+            val price = editDialog.findViewById<EditText>(R.id.etPrice)
+            val floor = editDialog.findViewById<EditText>(R.id.etFloor)
+            val company = editDialog.findViewById<EditText>(R.id.etComp)
             val btnModify = editDialog.findViewById<Button>(R.id.btnModify)
             val btnDecline = editDialog.findViewById<Button>(R.id.btnDecline)
 
 
             btnModify.setOnClickListener {
 
-                if (etName.getText().isEmpty() || etDesignation.getText().isEmpty()||etDepartment.getText().isEmpty()||etStation.getText().isEmpty()) {
+                if (name.getText().isEmpty() || price.getText().isEmpty()||floor.getText().isEmpty()||company.getText().isEmpty()) {
                     Toast.makeText(this@MainActivity,"Поля не заполнены",Toast.LENGTH_LONG).show()
                 } else {
                     houseList.add(
                         0, HouseData(
-                            etName.text.toString(),
-                            Integer.parseInt(etDesignation.text.toString()), etDepartment.text.toString(),
-                            etStation.text.toString()
+                            name.text.toString(),
+                            Integer.parseInt(price.text.toString()), floor.text.toString(),
+                            company.text.toString()
                         )
                     )
                     recycler.adapter?.notifyDataSetChanged()
@@ -114,7 +113,6 @@ class MainActivity : AppCompatActivity(),ItemClickListener {
                 recycler.adapter?.notifyDataSetChanged()
                 editDialog.dismiss()
             }
-
         }
         editDialog.show()
         btnDecline.setOnClickListener{
