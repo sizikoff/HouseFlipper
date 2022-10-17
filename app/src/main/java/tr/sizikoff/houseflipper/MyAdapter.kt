@@ -21,7 +21,7 @@ class MyAdapter(private var exampleList: ArrayList<HouseData>,
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tvName.text = exampleList[position].name
-        holder.tvprice.text = exampleList[position].price.toString()
+        holder.tvprice.text = exampleList[position].price.toString() + " ₽"
 
         holder.relativeLayout.setOnClickListener{
             clickListener.onClick(position)
@@ -36,9 +36,6 @@ class MyAdapter(private var exampleList: ArrayList<HouseData>,
         holder.btnEdit.setOnClickListener{
             clickListener.onEdit(position)
         }
-
-//        val isExpanded: Boolean = exampleList.get(position).isExpanded()
-//        holder.expandableLayout.setVisibility(if (isExpanded) View.VISIBLE else View.GONE)
 
     }
 

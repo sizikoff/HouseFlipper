@@ -8,7 +8,8 @@ data class HouseData(
     val price:Int,
     val floor:String,
     val company:String
-    ):Serializable
+):Serializable
+
 
 
 

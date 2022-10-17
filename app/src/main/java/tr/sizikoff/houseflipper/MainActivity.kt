@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity(),ItemClickListener {
         recycler.adapter = MyAdapter(houseList,this)
         recycler.layoutManager = LinearLayoutManager(this)
 
-        val actionA = findViewById<View>(R.id.action_a) as FloatingActionButton
         val actionB = findViewById<View>(R.id.action_b) as FloatingActionButton
         val actionC = findViewById<View>(R.id.action_c) as FloatingActionButton
 
@@ -47,26 +46,29 @@ class MainActivity : AppCompatActivity(),ItemClickListener {
             val btnModify = editDialog.findViewById<Button>(R.id.btnModify)
             val btnDecline = editDialog.findViewById<Button>(R.id.btnDecline)
 
+
             btnModify.setOnClickListener {
-                houseList.add(
-                    0, HouseData(
-                        etName.text.toString(),
-                        Integer.parseInt(etDesignation.text.toString()), etDepartment.text.toString(),
-                        etStation.text.toString()
+
+                if (etName.getText().isEmpty() || etDesignation.getText().isEmpty()||etDepartment.getText().isEmpty()||etStation.getText().isEmpty()) {
+                    Toast.makeText(this@MainActivity,"Поля не заполнены",Toast.LENGTH_LONG).show()
+                } else {
+                    houseList.add(
+                        0, HouseData(
+                            etName.text.toString(),
+                            Integer.parseInt(etDesignation.text.toString()), etDepartment.text.toString(),
+                            etStation.text.toString()
+                        )
                     )
-                )
-                recycler.adapter?.notifyDataSetChanged()
-                editDialog.dismiss()
-                tex.visibility = View.GONE
+                    recycler.adapter?.notifyDataSetChanged()
+                    editDialog.dismiss()
+                    tex.visibility = View.GONE
+                }
+
             }
             editDialog.show()
             btnDecline.setOnClickListener {
                 editDialog.hide()
             }
-        }
-        actionA.setOnClickListener {
-            houseList.sortBy { it.name }
-            recycler.adapter?.notifyDataSetChanged()
         }
 
         actionC.setOnClickListener {
@@ -96,17 +98,23 @@ class MainActivity : AppCompatActivity(),ItemClickListener {
         val btnDecline = editDialog.findViewById<Button>(R.id.btnDecline)
 
         etName.setText(houseList[position].name)
-        etDesignation.setText(houseList[position].floor)
-        etDepartment.setText(houseList[position].price.toString())
+        etDesignation.setText(houseList[position].price.toString())
+        etDepartment.setText(houseList[position].floor)
         etStation.setText(houseList[position].company)
 
         btnModify.setOnClickListener{
-            houseList[position] =
-                HouseData(etName.text.toString(),
-                    Integer.parseInt(etDesignation.text.toString()), etDepartment.text.toString(),
-                    etStation.text.toString())
-            recycler.adapter?.notifyDataSetChanged()
-            editDialog.dismiss()
+
+            if (etName.getText().isEmpty() || etDesignation.getText().isEmpty()||etDepartment.getText().isEmpty()||etStation.getText().isEmpty()) {
+                Toast.makeText(this@MainActivity,"Поля не заполнены",Toast.LENGTH_LONG).show()
+            }else{
+                houseList[position] =
+                    HouseData(etName.text.toString(),
+                        Integer.parseInt(etDesignation.text.toString()), etDepartment.text.toString(),
+                        etStation.text.toString())
+                recycler.adapter?.notifyDataSetChanged()
+                editDialog.dismiss()
+            }
+
         }
         editDialog.show()
         btnDecline.setOnClickListener{

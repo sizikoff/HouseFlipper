@@ -42,12 +42,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp">
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_icon="@drawable/ic_sort_price"
-            fab:fab_colorPressed="@color/black"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_c"
